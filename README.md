@@ -1,4 +1,4 @@
-# ALDEx2 - Julia Translation
+g# ALDEx2 - Julia Translation
 
 This branch is made in an attempt to improve the performance and scalability of ALDEx2, through translating certain functions (`clr` and `effect` to start) in from R to Julia. The idea is to be able to call it in R, but have the R code call Julia behind the scenes and expedite the computation.
 

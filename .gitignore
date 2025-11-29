@@ -1,9 +1,70 @@
+# OS files
 .DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# R files
+# History files
+.Rhistory
+.Rapp.history
+
+# Workspace files
+.RData
+.Ruserdata
+.Rproj.user/
+*.Rproj.user
+
+# R check directories
+*.Rcheck/
 *.Rcheck/*
+.Rcheck/
+
+# R package build artifacts
+*.tar.gz
+*.zip
+.Rinstignore
+
+# RStudio files
+.Rproj.user/
+*.Rproj
+
+# R temporary files
+*.Rout
+*.Rout.save
+.Rprofile
+
+# Julia files
+# System image and compiled files
+*.so
+*.dylib
+*.dll
+*.jl.cov
+*.jl.*.cov
+*.jl.mem
+
+# Julia package directories (uncomment if you don't want to track Manifest.toml)
+# Manifest.toml
+
+# Julia cache and compiled files
+.julia/
+*.jl.cache
+*.jl_*.jl
+
+# Julia test coverage
+coverage/
+*.lcov
+
+# Project-specific
 *Development/*
-ALDEx2.Rcheck/00check.log
-
-ALDEx2.Rcheck/00check.log
-
 ALDEx2_quinn/*
 
+# IDE files
+.cursorignore
+.cursorindexignore
+.vscode/
+.idea/
+
+# Logs
+*.log

@@ -536,75 +536,141 @@ See `TDD_Implementation_Phases.md` for detailed test specifications and implemen
 
 **Objective:** Conduct a comprehensive analysis of the original ALDEx2 R package to inform implementation strategy, identify optimization opportunities, and ensure complete feature parity.
 
-**Week 1: Package Structure and Test Coverage Analysis**
+# Week 1: ALDEx2 Package Structure and Test Coverage Analysis
 
-1. **Package Discovery and Inventory**
+## 1. Package Discovery and Inventory
 
-   - Locate the ALDEx2 R package repository
-   - Map complete package structure (R/, man/, tests/, vignettes/, etc.)
-   - Create comprehensive function inventory with signatures and dependencies
-   - Document all exported and internal functions
-   - Identify all dependencies and their versions
+**Objective:** Understand ALDEx2’s structure, dependencies, and functions.
 
-**Function Signature Documentation:**
+### Tasks
+- Locate the ALDEx2 R package repository (CRAN/GitHub)
+- Map complete package structure:
+  - `R/` – core R functions
+  - `man/` – documentation
+  - `tests/` – unit and integration tests
+  - `vignettes/` – usage examples
+  - `data/` – example datasets
+  - `DESCRIPTION` & `NAMESPACE` – dependencies and exports
+- Create a **function inventory**:
+  - List all exported and internal functions
+  - Document function signatures and dependencies
+  - Record package dependencies with exact versions
 
-   - For each function, document exact input specifications:
-     - Parameter names and types (e.g., `matrix`, `data.frame`, `numeric`, `character`, `logical`)
-     - Required vs. optional parameters
-     - Default values for optional parameters
-     - Parameter constraints and validation rules
-     - Mathematical dimensions for array/matrix inputs:
-       - Number of rows (samples) and columns (features) for count matrices
-       - Vector lengths
-       - Array dimensions (for multi-dimensional inputs)
-     - Data structure requirements (e.g., row names, column names, metadata)
+### Function Signature Documentation
+For each function:
+- **Inputs:**
+  - Parameter names and types (`matrix`, `data.frame`, `numeric`, `character`, `logical`)
+  - Required vs. optional parameters
+  - Default values
+  - Constraints and validation rules
+  - Dimensions for matrices/arrays:
+    - Count matrices: rows = samples, columns = features
+    - Vectors and arrays: lengths and dimensions
+  - Data structure requirements (row/column names, metadata)
+- **Outputs:**
+  - Return type (`list`, `data.frame`, `matrix`, `ALDExObject`)
+  - Output structure and organization
+  - Dimensions and transformations
+  - Field names and types for complex objects
+  - Side effects (printed output, warnings, messages)
+- **Documentation Table Columns:**
+  - Function name
+  - Input parameters (name, type, dimensions, constraints)
+  - Output type, dimensions, structure
+  - Example input/output with dimensions
+  - Dependencies on other functions
 
-   - For each function, document exact output specifications:
-     - Return type (e.g., `list`, `data.frame`, `matrix`, `numeric`, `ALDExObject`)
-     - Output structure and organization
-     - Mathematical dimensions of output arrays/matrices:
-       - Number of rows and columns
-       - Relationship between input and output dimensions
-       - Dimension transformations (e.g., feature reduction, sample aggregation)
-     - Field names and data types within complex return objects
-     - Side effects (e.g., printed output, warnings, messages)
+---
 
-   - Create function signature documentation table with:
-     - Function name
-     - Input parameters (name, type, dimensions, constraints)
-     - Output (type, dimensions, structure)
-     - Example input/output pairs with actual dimensions
-     - Dependencies on other functions
+## 2. Test Coverage Analysis
 
-2. **Test Coverage Analysis**
+**Objective:** Assess test completeness and identify gaps.
 
-   - Run test suite and measure coverage using `covr` or `testthat` coverage tools
-   - Document test coverage percentage per function
-   - Identify functions with no or minimal test coverage
-   - Analyze test types (unit, integration, edge cases)
-   - Review test quality and comprehensiveness
-   - Create test coverage report with gaps identified
+### Tasks
+- Run the test suite and measure coverage using `covr` or `testthat`
+- Document:
+  - Coverage percentage per function
+  - Functions with minimal/no coverage
+  - Test types (unit, integration, edge cases)
+  - Test quality and comprehensiveness
+- Produce a **test coverage report** highlighting gaps
 
-3. **Function Categorization**
+---
 
-   - **Probabilistic Functions:** Identify functions using random number generation
-     - `aldex_clr()` - Monte Carlo sampling
-     - `rdirichlet()` - Random sampling
-     - Any functions with stochastic components
-   - **Deterministic Functions:** Identify functions with fixed outputs for given inputs
-     - `aitchison_mean()` - Mathematical operations
-     - `iqlr_features()` - Feature selection logic
-     - Statistical test calculations (given fixed inputs)
-   - Document seed requirements and reproducibility constraints
-   - Identify functions requiring statistical validation vs. exact matching
+## 3. Function Categorization
 
-4. **Benchmarking Infrastructure Audit**
+**Objective:** Identify deterministic vs. probabilistic functions and reproducibility requirements.
 
-   - Check for existing benchmarking tools (microbenchmark, rbenchmark, etc.)
-   - Identify if package has performance tests or benchmarks
-   - Review vignettes for performance examples
-   - Document current performance characteristics if available
-   - Create benchmarking framework if missing
+### Probabilistic Functions
+- Functions using random number generation:
+  - `aldex_clr()` – Monte Carlo sampling
+  - `rdirichlet()` – Random sampling
+- Document:
+  - Seed requirements
+  - Variability and reproducibility constraints
+
+### Deterministic Functions
+- Functions producing fixed output for given input:
+  - `aitchison_mean()` – mathematical operations
+  - `iqlr_features()` – feature selection
+  - Statistical tests on fixed inputs
+- Note functions requiring statistical validation vs. exact matching
+
+---
+
+## 4. Benchmarking Infrastructure Audit
+
+**Objective:** Identify performance bottlenecks and create a reproducible benchmarking framework.
+
+### Profiling Existing Code
+- Use `Rprof()` and `profvis` to locate slow code
+- Visualize execution time and memory usage
+- Highlight stochastic functions with variable runtimes
+
+### Microbenchmarking
+- Use `microbenchmark` or `bench` packages
+- Test realistic input sizes (samples × features, metadata)
+- Collect median, mean, min/max, and interquartile runtime
+
+### Performance Metrics
+- Execution time (seconds per function call)
+- Memory allocation (bytes)
+- Scalability with number of samples/features
+- Reproducibility for stochastic functions
+
+### Best Practices (from Advanced R)
+- Optimize bottlenecks, not trivial code
+- Benchmark realistic input sizes
+- Compare alternative implementations
+- Repeat benchmarks multiple times
+- Consider trade-offs: speed vs. readability/maintainability
+
+### Documentation and Reporting
+- Record profiling and benchmarking results for each function
+- Highlight deterministic vs. stochastic functions
+- Provide optimization recommendations:
+  - Vectorization
+  - Pre-allocation
+  - Efficient data structures
+  - Parallelization (e.g., Monte Carlo sampling)
+
+---
+
+## 5. AUDIT Folder Structure for Function-Level Analysis
+
+**Objective:** Organize audit information for each R function in a dedicated folder with reproducible profiling.
+
+### Tasks
+- Create an `AUDIT/` folder in the project root
+- For each function in ALDEx2:
+  - Create a subfolder: `AUDIT/<function_name>/`
+  - Store audit documents:
+    - `signature.md` – input/output specifications
+    - `tests.md` – test coverage analysis
+    - `benchmarks.md` – profiling and microbenchmark results
+    - `notes.md` – observations, reproducibility, optimization suggestions
+    - `profile.R` – **profiling and benchmarking code**, example template:
+
 
 **Week 2: Computational Analysis and Parallelization Opportunities**
 

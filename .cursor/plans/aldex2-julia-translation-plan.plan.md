@@ -1,4 +1,165 @@
-<!-- 8b669c62-b50e-4a14-a7ca-f2fd3f57b0bd 0f4ec7e9-a692-49b7-87dd-bd4100152910 -->
+---
+name: ALDEx2 Julia Translation Plan
+overview: ""
+todos:
+  - id: 606e8e3b-e5a9-4f35-b94a-36f218c5f4d3
+    content: Create comprehensive function inventory with signatures, dependencies, and exact input/output specifications (data types and mathematical dimensions)
+    status: pending
+  - id: c354cb3d-3afd-427d-807e-b53bf472c0c9
+    content: Run test coverage analysis using covr/testthat and document coverage per function
+    status: pending
+  - id: bd733ab9-887e-473b-acd3-e647ef6fa8ed
+    content: Categorize all functions as probabilistic vs. deterministic
+    status: pending
+  - id: b0b47af5-b679-4753-94d5-c96f934ae957
+    content: Identify and document existing benchmarking tools in R package
+    status: pending
+  - id: 03e78328-a4f1-4e5a-919e-bb7a126537dd
+    content: Profile all functions using profvis/Rprof/microbenchmark
+    status: pending
+  - id: ee938534-a2c6-4c0f-9155-3d145ba61937
+    content: Create performance profile report ranking functions by computational cost
+    status: pending
+  - id: 5a2f5374-235c-423e-a597-41532bd82f1c
+    content: Analyze parallelization opportunities (Monte Carlo, feature-level, sample-level)
+    status: pending
+  - id: 7657573d-d69e-43af-90a1-d0c49f05e60e
+    content: Identify GPU acceleration candidates and distributed computing opportunities
+    status: pending
+  - id: 465550cd-60e9-4f8d-bd96-00a0233bce27
+    content: Create R Package Audit Report with all findings
+    status: pending
+  - id: 2f7d6a3b-1eb3-4aa6-92bb-fa1b46872b2f
+    content: Create Performance Analysis Report with hot paths and scaling behavior
+    status: pending
+  - id: 7d7c9132-9267-4602-a3c4-02b92ce53f51
+    content: Create Parallelization Strategy Document with specific recommendations
+    status: pending
+  - id: fe16ca63-0fed-44c8-860e-65e19abcd8e0
+    content: Extract test specifications from R package tests
+    status: pending
+  - id: ab31ea61-e905-4a3a-972f-ee382613ad20
+    content: Create Implementation Priority Matrix based on audit findings
+    status: pending
+  - id: af4232e4-9d7c-4521-9675-a14640a3bd54
+    content: Set up ALDEx2_jl_R package structure (enhance existing if present)
+    status: pending
+  - id: 3606494b-f664-464f-9c21-7279bf6d5e0d
+    content: Implement Julia setup function using JuliaCall with development mode support
+    status: pending
+  - id: 7df8f8de-7a96-44af-9148-5f3dc4767aa1
+    content: Implement data conversion utilities (R ↔ Julia)
+    status: pending
+  - id: f95d47e1-30a8-4fd9-b6e8-836d3b26e4a1
+    content: Implement parallel testing utilities (call R and Julia versions side-by-side)
+    status: pending
+  - id: 6e57652e-fd21-4f59-8322-c76ce2177b9e
+    content: Implement validation utilities (output comparison, equivalence testing)
+    status: pending
+  - id: 99ef01e4-f9a2-4e9e-b187-fb7fba40b6f3
+    content: Create validation scripts for dimension and data type checking
+    status: pending
+  - id: 5d819359-a0db-4429-be2e-4e0ed55b4acb
+    content: Set up development workflow with hot-reload capability
+    status: pending
+  - id: 41e95826-d6f2-4d7d-9419-ed12545b3dce
+    content: Document R interface usage for development and testing
+    status: pending
+  - id: d134a81a-ff88-4fed-8e27-fe8c901b2b68
+    content: Create example scripts demonstrating parallel testing workflow
+    status: pending
+  - id: 3761013a-efc9-4148-9fca-5223782604cc
+    content: Set up ALDEx2.jl package structure with PkgTemplates.jl, Project.toml, and basic module structure
+    status: pending
+  - id: cfaf5b5c-0859-4c15-8f52-251749bae7d9
+    content: Implement core types (ALDExCLR, ALDExResults, ALDExEffect) in src/types.jl
+    status: pending
+  - id: 23deeb9c-991d-42ae-b85a-1f1313427121
+    content: Create CI/CD pipeline
+    status: pending
+  - id: dd9c882b-ed32-45be-ad9e-f59f1a1b33c2
+    content: Set up test data directory (test/data/)
+    status: pending
+  - id: 8d72d6fd-b002-4c62-a779-ac196cc9e645
+    content: "Step 1: Classify function as deterministic or probabilistic"
+    status: pending
+  - id: 85b4c7d3-3cc5-46e4-82fb-b97d0159f329
+    content: "Step 2: Write R script to generate reference values from test data"
+    status: pending
+  - id: dcf950d1-17be-42bf-b675-90db436036fc
+    content: "Step 3: Write Julia unit tests (test/test_[function_name].jl) - watch tests fail"
+    status: pending
+  - id: edc917a6-ea44-4967-96a8-0aa1c78639f1
+    content: "Step 4: Write R parallel tests (tests/testthat/test-[function_name].R) - watch tests fail"
+    status: pending
+  - id: 3a9adaa4-b0ca-4e6f-bb14-c6ad55fadb16
+    content: "Step 5: Implement first Julia version - make all tests pass"
+    status: pending
+  - id: 2c399ed3-72b8-495b-9913-6f738b200a63
+    content: "Step 6: Run benchmarks (R, Julia via R interface, Julia direct)"
+    status: pending
+  - id: d8856555-7964-473d-9e13-0b057e62c4dd
+    content: "Step 7: Refactor and optimize Julia function - ensure tests still pass"
+    status: pending
+  - id: 07fcea95-d414-4955-ae87-e24d6291ec57
+    content: "Step 8: Add documentation and examples"
+    status: pending
+  - id: ad7d1752-859e-493f-af1d-1d1cb9944900
+    content: "Step 1: Classify function as deterministic or probabilistic"
+    status: pending
+  - id: f1621e5e-cd2f-46d3-a743-71d4e8880ea2
+    content: "Step 2: Write R script to generate reference values from test data"
+    status: pending
+  - id: 0758cb35-6cb2-4960-8902-9a32b4543dd5
+    content: "Step 3: Write Julia unit tests (test/test_[function_name].jl) - watch tests fail"
+    status: pending
+  - id: c09f25e6-f29b-47eb-839b-fc40469bf83f
+    content: "Step 4: Write R parallel tests (tests/testthat/test-[function_name].R) - watch tests fail"
+    status: pending
+  - id: ed0fd476-0364-4a3a-8266-7fde5c51be3d
+    content: "Step 5: Implement first Julia version - make all tests pass"
+    status: pending
+  - id: d846e4ab-1c1a-41a8-ac30-8a5ca4f9f142
+    content: "Step 6: Run benchmarks (R, Julia via R interface, Julia direct)"
+    status: pending
+  - id: 9669d999-466a-4296-af95-5462687f233c
+    content: "Step 7: Refactor and optimize Julia function - ensure tests still pass"
+    status: pending
+  - id: 64b454ee-e55a-44f6-9b9b-d91a3ba78859
+    content: "Step 8: Add documentation and examples"
+    status: pending
+  - id: adf9141b-3fc0-416b-b3ce-ea66814ae93e
+    content: End-to-end validation of complete aldex() workflow
+    status: pending
+  - id: 27ce5e64-8870-4b46-99b7-a647035ec1e2
+    content: Set up ALDEx2GPU.jl package structure with extension system for GPU backends
+    status: pending
+  - id: 2f9be445-6c6c-41b0-a587-b02f5acee99d
+    content: Implement GPU kernels for CLR transformation and Dirichlet sampling using KernelAbstractions.jl
+    status: pending
+  - id: cd4abf93-df01-4fb0-8770-a4b924888017
+    content: Implement GPU-accelerated versions of core functions (aldex_clr, aldex_ttest, etc.)
+    status: pending
+  - id: 17c4e542-05f0-414d-a218-dbfccec9f908
+    content: Validate GPU implementations against CPU versions (which are validated against R)
+    status: pending
+  - id: cfaf1f7d-077b-400c-8b90-55f520da6a82
+    content: Testing and validation on multiple GPU backends
+    status: pending
+  - id: 0fdfca5a-ec04-46d3-bb42-0ab22a8386b4
+    content: Update R interface to support GPU backend selection
+    status: pending
+  - id: bf392d8d-26be-4827-8a93-95b9455a685a
+    content: Create comprehensive test suite with unit tests, integration tests, and performance benchmarks
+    status: pending
+  - id: 8c6bc3dd-ad60-44f8-8875-a6e8ab6dcf83
+    content: All functions validated using parallel testing framework (R vs. Julia)
+    status: pending
+  - id: 4b3ec18c-b42b-4477-8989-db9c1fe34b4e
+    content: End-to-end workflow validation with real datasets
+    status: pending
+---
+
 # ALDEx2 Julia Translation Plan
 
 ## Overview
@@ -168,6 +329,65 @@ OpenCLExt = ["OpenCL"]
 - Prioritize functions identified as high-value GPU candidates in Phase 0 audit
 - Validate GPU speedup against Phase 0 CPU benchmarks
 
+### 2.4 GPU Implementation Guidelines
+
+**Critical guidelines for implementing GPU kernels in ALDEx2GPU.jl:**
+
+#### 1. Kernel Design & Correctness
+
+- **Memory Access Safety:** Guard memory access with bounds checking to prevent out-of-bounds errors. Use comments to indicate where this is done, then determine if bounds checking can be optimized by disabling with `@inbounds` after validation.
+- **Grid-Stride Loops:** Use grid-stride loops whenever the input may be larger than the number of launched threads. This ensures all elements are processed regardless of grid size.
+- **Output Buffers:** Always write to output buffers because GPU kernels cannot return values. Design kernels to take input and output buffers as parameters.
+- **Input/Output Separation:** Keep input/output separation (avoid in-place operations) unless using atomic operations or doing safe element-wise mapping. This prevents race conditions and makes kernels easier to reason about.
+
+#### 2. Performance & Execution Configuration
+
+- **Precision:** Use `Float32` values instead of `Float64` for better GPU performance and memory efficiency, unless numerical precision requirements demand `Float64`.
+- **Block Size:** A good block size is 128–512 threads, always a multiple of 32 (warp size). Start with 256 threads per block as a default.
+- **Grid Size:** Start grid size at 2×–4× number of SMs (usually 20–100 blocks for typical GPUs). Adjust based on workload characteristics.
+- **Kernel Fusion:** When launching many small kernels, try to fuse operations into one kernel to reduce launch overhead. This is especially important for operations that can be combined (e.g., CLR transformation followed by statistical computation).
+- **Memory Coalescing:** Access memory using coalesced patterns (thread i touches element i, i+stride, …). Ensure consecutive threads access consecutive memory locations when possible.
+- **Shared Memory:** If using shared memory, keep an eye on bank conflicts. Structure shared memory access to minimize conflicts.
+
+#### 3. Debugging & Development Tips
+
+- **Debugging Tools:** Use compute-sanitizer and cuda-gdb to catch potential errors in GPU code. These tools help identify memory access violations, race conditions, and other GPU-specific issues.
+- **Print Debugging:** Print debugging in GPU kernels works only with:
+  - Literal strings
+  - Scalars
+  - Use these for basic debugging, but prefer proper debugging tools for complex issues.
+- **Isolation Testing:** For tricky bugs: temporarily reduce block/grid size so you can isolate behavior. Start with 1 block, 1 thread to verify correctness before scaling up.
+
+#### 4. Avoiding Race Conditions
+
+- **Reduction Operations:** Any reduction-like operation (sum, histogram, etc.) requires atomic operations. Be aware that atomics can be performance bottlenecks.
+- **Minimize Atomics:** Avoid atomics wherever possible because they slow down the code. Design algorithms to minimize the need for atomics.
+- **Shared Memory Reduction:** If possible, use shared memory reduction, then one atomic write per block → huge performance boost. This pattern is much faster than per-element atomics.
+
+#### 5. Managing Random Number Generation
+
+- **RNG Per Thread:** Pre-allocate RNG for each thread. Each thread must use its own RNG state indexed by thread ID. Never reuse a state across threads.
+- **RNG Efficiency:** Avoid excessive RNG per thread; thousands of draws per thread can bottleneck registers. Consider generating random numbers in batches or using alternative approaches when possible.
+
+#### 6. Common Mistakes to Avoid
+
+- **Type Casting:** Be explicit about type casting in kernels. Ensure division and other operations use the correct numeric types (Float32 vs Float64) as specified.
+- **Memory Management:** Ensure all GPU memory allocations are properly freed. Use Julia's automatic memory management where possible, but be aware of memory pressure.
+
+#### 7. Testing & Validation
+
+- **Incremental Testing:** Always test kernels first with:
+  - Small inputs
+  - 1 block, 1 thread configuration
+  - Gradually increase complexity
+- **CPU Comparison:** Compare GPU results to a trusted CPU implementation. The CPU version (validated against R) serves as the ground truth.
+- **Assert Checks:** Use assert sanity checks inside kernels when testing. Remove or conditionally compile these for production builds.
+
+#### 8. Workflow & Productivity Tips
+
+- **Keep Kernels Minimal:** Keep GPU code minimal—move setup, preprocessing, or complex logic to the host (CPU). Kernels should focus on the parallel computation itself.
+- **Host-Device Separation:** Clearly separate host code (setup, data preparation, result collection) from device code (kernels). This improves maintainability and performance.
+
 ## 3. ALDEx2_jl_R - R Interface Package
 
 **Note:** This interface is implemented in Phase 1 (immediately after audit) to enable parallel testing during development.
@@ -219,10 +439,12 @@ This workflow ensures comprehensive testing and validation at each step, with co
 ### Step-by-Step TDD Process
 
 **Step 1: Function Classification**
+
 - Determine if function is **deterministic** or **probabilistic** (from Phase 0 audit)
 - Document expected behavior and validation approach
 
 **Step 2: Generate Reference Values**
+
 - Write a small R script using the original ALDEx2 package
 - Generate reference values from test data
 - Save reference outputs for deterministic functions
@@ -230,6 +452,7 @@ This workflow ensures comprehensive testing and validation at each step, with co
 - Commit: "Add reference values for [function_name]"
 
 **Step 3: Write Julia Unit Tests**
+
 - Write Julia tests in `test/test_[function_name].jl`
 - For **deterministic functions**: Use strict equality tests (exact matching)
 - For **probabilistic functions**: Use statistical equivalence tests (e.g., Kolmogorov-Smirnov, correlation tests)
@@ -238,6 +461,7 @@ This workflow ensures comprehensive testing and validation at each step, with co
 - Commit: "Add Julia unit tests for [function_name] (RED phase)"
 
 **Step 4: Write R Parallel Tests**
+
 - Write R tests in `tests/testthat/test-[function_name].R`
 - Test both original R package function and Julia function (via R interface)
 - Use helper functions from `helper-parallel_test.R` and `helper-validation.R`
@@ -252,6 +476,7 @@ This workflow ensures comprehensive testing and validation at each step, with co
 - Commit: "Add R parallel tests for [function_name] (RED phase)"\
 
 **Step 5: Implement First Julia Version**
+
 - Write initial Julia implementation in `src/[module].jl`
 - Translate from R code, focusing on correctness over performance
 - Ensure function signature matches Phase 0 audit specifications
@@ -260,6 +485,7 @@ This workflow ensures comprehensive testing and validation at each step, with co
 - Commit: "Implement [function_name] - passes tests (GREEN phase)"
 
 **Step 6: Benchmarking**
+
 - Run benchmarks comparing:
   - Original R implementation
   - Julia implementation (via R interface)
@@ -269,6 +495,7 @@ This workflow ensures comprehensive testing and validation at each step, with co
 - Commit: "Add benchmarks for [function_name]"
 
 **Step 7: Refactor and Optimize**
+
 - Optimize Julia implementation based on:
   - Phase 0 performance analysis
   - Benchmark results
@@ -281,6 +508,7 @@ This workflow ensures comprehensive testing and validation at each step, with co
 - Commit: "Optimize [function_name] (REFACTOR phase)"
 
 **Step 8: Documentation**
+
 - Add docstrings with examples
 - Document any deviations from R implementation
 - Update package documentation
@@ -558,12 +786,14 @@ See `TDD_Implementation_Phases.md` for detailed test specifications and implemen
 - Create example scripts demonstrating parallel testing workflow
 
 **Key Deliverables:**
+
 - Functional R interface allowing Julia package loading in development mode
 - Parallel testing framework for R vs. Julia function comparison
 - Validation utilities for ensuring equivalent outputs
 - Documentation for using R interface during development
 
 **Success Criteria:**
+
 - [ ] Can load ALDEx2.jl package in development mode from R session
 - [ ] Can call Julia functions (even if stubs) from R
 - [ ] Data conversion utilities handle all required data types and dimensions
@@ -593,6 +823,7 @@ See `TDD_Implementation_Phases.md` for detailed test specifications and implemen
 8. **Document:** Add docstrings and examples
 
 **Functions to implement:**
+
 - `rdirichlet()` - Probabilistic (use statistical equivalence tests)
 - `aitchison_mean()` - Deterministic (use strict equality tests)
 
@@ -606,6 +837,7 @@ See `TDD_Implementation_Phases.md` for detailed test specifications and implemen
 - `aldex_ttest()` - Deterministic (statistical test results, use strict equality for p-values)
 
 **Key Activities:**
+
 - Implement with Monte Carlo sampling (using parallelization strategy from Phase 0)
 - Continuously validate using R parallel tests from Phase 1
 - Benchmark after initial implementation
@@ -626,6 +858,7 @@ See `TDD_Implementation_Phases.md` for detailed test specifications and implemen
 - `aldex_corr()` - Deterministic (correlation coefficients, use strict equality)
 
 **Key Activities:**
+
 - Generate reference values for each function
 - Write Julia tests (strict equality for all)
 - Write R parallel tests comparing R vs. Julia
@@ -652,22 +885,53 @@ See `TDD_Implementation_Phases.md` for detailed test specifications and implemen
 
 ### Phase 4: GPU Package (Weeks 11-14)
 
+**Implementation Guidelines:** Follow all GPU implementation guidelines from Section 2.4 during kernel development. Key principles:
+- Start with small inputs and 1 block/1 thread for initial testing
+- Use Float32 for performance unless precision requires Float64
+- Guard memory access, then optimize with @inbounds after validation
+- Use grid-stride loops for variable-sized inputs
+- Minimize atomics; prefer shared memory reductions
+- Pre-allocate RNG per thread with proper indexing
+- Keep kernels minimal; move complex logic to host
+- Always compare GPU results to CPU implementation (validated against R)
+
 **Week 11-12: GPU Infrastructure**
 
 - Set up ALDEx2GPU.jl package structure
 - Implement KernelAbstractions kernels for operations identified in Phase 0 parallelization analysis
+  - Follow kernel design guidelines (Section 2.4.1): bounds checking, grid-stride loops, output buffers
+  - Use appropriate block sizes (128-512 threads, multiple of 32)
+  - Configure grid sizes (2×-4× number of SMs)
 - Set up extension system for GPU backends
 - Implement GPU-accelerated Dirichlet sampling (high priority from Phase 0)
+  - Pre-allocate RNG per thread with proper state indexing
+  - Use Float32 for performance
+  - Test with small inputs first (1 block, 1 thread)
 - **Parallel Testing:** Validate GPU implementations against CPU versions (which are already validated against R)
+  - Use compute-sanitizer and cuda-gdb for debugging
+  - Compare results using CPU implementation as ground truth
 
 **Week 13-14: GPU Algorithms**
 
 - Implement GPU-accelerated CLR transformation (identified as high-value in Phase 0)
+  - Use coalesced memory access patterns
+  - Consider fusing with subsequent operations to reduce kernel launch overhead
+  - Optimize shared memory usage if applicable
 - Implement GPU statistical tests (feature-level parallelization from Phase 0)
+  - Parallel computation across features (independent per feature)
+  - Use appropriate reduction patterns (shared memory + atomic per block)
 - Implement GPU effect size calculations
+  - Vectorized operations with proper memory coalescing
 - **Parallel Testing:** Validate GPU results against CPU Julia and R implementations
+  - Test with small inputs, then scale up
+  - Use assert checks during development
+  - Remove/conditionally compile asserts for production
 - Testing and validation on multiple GPU backends
+  - CUDA, AMDGPU, Metal, oneAPI, OpenCL
+  - Validate consistent results across backends
 - Performance validation against Phase 0 benchmarks
+  - Measure speedup vs. CPU implementation
+  - Profile memory usage and kernel execution times
 - Update R interface to support GPU backend selection
 
 ## 5. Performance Targets
@@ -691,6 +955,7 @@ See `TDD_Implementation_Phases.md` for detailed test specifications and implemen
 ### TDD Workflow Integration
 
 Each function follows the 8-step TDD process:
+
 1. Function classification (deterministic vs. probabilistic)
 2. Generate reference values (R script)
 3. Write Julia unit tests (watch them fail)
@@ -736,8 +1001,22 @@ Each function follows the 8-step TDD process:
 - Validate performance targets from Phase 0 analysis
 - Memory profiling
 - GPU performance validation
+  - Follow GPU testing guidelines (Section 2.4.7): start with small inputs, 1 block/1 thread
+  - Compare GPU results to CPU implementation (validated against R)
+  - Use compute-sanitizer and cuda-gdb for debugging
+  - Profile kernel execution times and memory usage
 - Compare with Phase 0 performance profiles
 - Use parallel testing framework to ensure performance gains don't compromise correctness
+
+### GPU Kernel Tests
+
+- **Incremental Testing:** Test kernels with small inputs and minimal configuration (1 block, 1 thread) before scaling up
+- **CPU Comparison:** Always compare GPU kernel results to CPU implementation (which is validated against R)
+- **Debugging Tools:** Use compute-sanitizer and cuda-gdb to catch GPU-specific errors
+- **Assert Checks:** Include assert sanity checks during development; remove or conditionally compile for production
+- **Multi-Backend Validation:** Test on multiple GPU backends (CUDA, AMDGPU, Metal, oneAPI, OpenCL) to ensure portability
+- **Memory Validation:** Verify proper memory access patterns (coalesced access, no out-of-bounds)
+- **RNG Validation:** For probabilistic functions, ensure RNG per thread produces statistically equivalent results
 
 ## 7. Documentation
 
@@ -794,58 +1073,3 @@ Each function follows the 8-step TDD process:
 - [ ] Parallelization strategies implemented as recommended in Phase 0 audit
 - [ ] All probabilistic functions validated using statistical criteria from Phase 0 (via parallel testing)
 - [ ] All deterministic functions match R outputs exactly (validated using Phase 0 test specifications and parallel testing)
-
-### To-dos
-
-- [ ] Create comprehensive function inventory with signatures, dependencies, and exact input/output specifications (data types and mathematical dimensions)
-- [ ] Run test coverage analysis using covr/testthat and document coverage per function
-- [ ] Categorize all functions as probabilistic vs. deterministic
-- [ ] Identify and document existing benchmarking tools in R package
-- [ ] Profile all functions using profvis/Rprof/microbenchmark
-- [ ] Create performance profile report ranking functions by computational cost
-- [ ] Analyze parallelization opportunities (Monte Carlo, feature-level, sample-level)
-- [ ] Identify GPU acceleration candidates and distributed computing opportunities
-- [ ] Create R Package Audit Report with all findings
-- [ ] Create Performance Analysis Report with hot paths and scaling behavior
-- [ ] Create Parallelization Strategy Document with specific recommendations
-- [ ] Extract test specifications from R package tests
-- [ ] Create Implementation Priority Matrix based on audit findings
-- [ ] Set up ALDEx2_jl_R package structure (enhance existing if present)
-- [ ] Implement Julia setup function using JuliaCall with development mode support
-- [ ] Implement data conversion utilities (R ↔ Julia)
-- [ ] Implement parallel testing utilities (call R and Julia versions side-by-side)
-- [ ] Implement validation utilities (output comparison, equivalence testing)
-- [ ] Create validation scripts for dimension and data type checking
-- [ ] Set up development workflow with hot-reload capability
-- [ ] Document R interface usage for development and testing
-- [ ] Create example scripts demonstrating parallel testing workflow
-- [ ] Set up ALDEx2.jl package structure with PkgTemplates.jl, Project.toml, and basic module structure
-- [ ] Implement core types (ALDExCLR, ALDExResults, ALDExEffect) in src/types.jl
-- [ ] Create CI/CD pipeline
-- [ ] Set up test data directory (test/data/)
-- [ ] Step 1: Classify function as deterministic or probabilistic
-- [ ] Step 2: Write R script to generate reference values from test data
-- [ ] Step 3: Write Julia unit tests (test/test_[function_name].jl) - watch tests fail
-- [ ] Step 4: Write R parallel tests (tests/testthat/test-[function_name].R) - watch tests fail
-- [ ] Step 5: Implement first Julia version - make all tests pass
-- [ ] Step 6: Run benchmarks (R, Julia via R interface, Julia direct)
-- [ ] Step 7: Refactor and optimize Julia function - ensure tests still pass
-- [ ] Step 8: Add documentation and examples
-- [ ] Step 1: Classify function as deterministic or probabilistic
-- [ ] Step 2: Write R script to generate reference values from test data
-- [ ] Step 3: Write Julia unit tests (test/test_[function_name].jl) - watch tests fail
-- [ ] Step 4: Write R parallel tests (tests/testthat/test-[function_name].R) - watch tests fail
-- [ ] Step 5: Implement first Julia version - make all tests pass
-- [ ] Step 6: Run benchmarks (R, Julia via R interface, Julia direct)
-- [ ] Step 7: Refactor and optimize Julia function - ensure tests still pass
-- [ ] Step 8: Add documentation and examples
-- [ ] End-to-end validation of complete aldex() workflow
-- [ ] Set up ALDEx2GPU.jl package structure with extension system for GPU backends
-- [ ] Implement GPU kernels for CLR transformation and Dirichlet sampling using KernelAbstractions.jl
-- [ ] Implement GPU-accelerated versions of core functions (aldex_clr, aldex_ttest, etc.)
-- [ ] Validate GPU implementations against CPU versions (which are validated against R)
-- [ ] Testing and validation on multiple GPU backends
-- [ ] Update R interface to support GPU backend selection
-- [ ] Create comprehensive test suite with unit tests, integration tests, and performance benchmarks
-- [ ] All functions validated using parallel testing framework (R vs. Julia)
-- [ ] End-to-end workflow validation with real datasets

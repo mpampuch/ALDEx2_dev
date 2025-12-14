@@ -1,163 +1,7 @@
 ---
-name: ALDEx2 Julia Translation Plan
+name: ""
 overview: ""
-todos:
-  - id: 606e8e3b-e5a9-4f35-b94a-36f218c5f4d3
-    content: Create comprehensive function inventory with signatures, dependencies, and exact input/output specifications (data types and mathematical dimensions)
-    status: pending
-  - id: c354cb3d-3afd-427d-807e-b53bf472c0c9
-    content: Run test coverage analysis using covr/testthat and document coverage per function
-    status: pending
-  - id: bd733ab9-887e-473b-acd3-e647ef6fa8ed
-    content: Categorize all functions as probabilistic vs. deterministic
-    status: pending
-  - id: b0b47af5-b679-4753-94d5-c96f934ae957
-    content: Identify and document existing benchmarking tools in R package
-    status: pending
-  - id: 03e78328-a4f1-4e5a-919e-bb7a126537dd
-    content: Profile all functions using profvis/Rprof/microbenchmark
-    status: pending
-  - id: ee938534-a2c6-4c0f-9155-3d145ba61937
-    content: Create performance profile report ranking functions by computational cost
-    status: pending
-  - id: 5a2f5374-235c-423e-a597-41532bd82f1c
-    content: Analyze parallelization opportunities (Monte Carlo, feature-level, sample-level)
-    status: pending
-  - id: 7657573d-d69e-43af-90a1-d0c49f05e60e
-    content: Identify GPU acceleration candidates and distributed computing opportunities
-    status: pending
-  - id: 465550cd-60e9-4f8d-bd96-00a0233bce27
-    content: Create R Package Audit Report with all findings
-    status: pending
-  - id: 2f7d6a3b-1eb3-4aa6-92bb-fa1b46872b2f
-    content: Create Performance Analysis Report with hot paths and scaling behavior
-    status: pending
-  - id: 7d7c9132-9267-4602-a3c4-02b92ce53f51
-    content: Create Parallelization Strategy Document with specific recommendations
-    status: pending
-  - id: fe16ca63-0fed-44c8-860e-65e19abcd8e0
-    content: Extract test specifications from R package tests
-    status: pending
-  - id: ab31ea61-e905-4a3a-972f-ee382613ad20
-    content: Create Implementation Priority Matrix based on audit findings
-    status: pending
-  - id: af4232e4-9d7c-4521-9675-a14640a3bd54
-    content: Set up ALDEx2_jl_R package structure (enhance existing if present)
-    status: pending
-  - id: 3606494b-f664-464f-9c21-7279bf6d5e0d
-    content: Implement Julia setup function using JuliaCall with development mode support
-    status: pending
-  - id: 7df8f8de-7a96-44af-9148-5f3dc4767aa1
-    content: Implement data conversion utilities (R ↔ Julia)
-    status: pending
-  - id: f95d47e1-30a8-4fd9-b6e8-836d3b26e4a1
-    content: Implement parallel testing utilities (call R and Julia versions side-by-side)
-    status: pending
-  - id: 6e57652e-fd21-4f59-8322-c76ce2177b9e
-    content: Implement validation utilities (output comparison, equivalence testing)
-    status: pending
-  - id: 99ef01e4-f9a2-4e9e-b187-fb7fba40b6f3
-    content: Create validation scripts for dimension and data type checking
-    status: pending
-  - id: 5d819359-a0db-4429-be2e-4e0ed55b4acb
-    content: Set up development workflow with hot-reload capability
-    status: pending
-  - id: 41e95826-d6f2-4d7d-9419-ed12545b3dce
-    content: Document R interface usage for development and testing
-    status: pending
-  - id: d134a81a-ff88-4fed-8e27-fe8c901b2b68
-    content: Create example scripts demonstrating parallel testing workflow
-    status: pending
-  - id: 3761013a-efc9-4148-9fca-5223782604cc
-    content: Set up ALDEx2.jl package structure with PkgTemplates.jl, Project.toml, and basic module structure
-    status: pending
-  - id: cfaf5b5c-0859-4c15-8f52-251749bae7d9
-    content: Implement core types (ALDExCLR, ALDExResults, ALDExEffect) in src/types.jl
-    status: pending
-  - id: 23deeb9c-991d-42ae-b85a-1f1313427121
-    content: Create CI/CD pipeline
-    status: pending
-  - id: dd9c882b-ed32-45be-ad9e-f59f1a1b33c2
-    content: Set up test data directory (test/data/)
-    status: pending
-  - id: 8d72d6fd-b002-4c62-a779-ac196cc9e645
-    content: "Step 1: Classify function as deterministic or probabilistic"
-    status: pending
-  - id: 85b4c7d3-3cc5-46e4-82fb-b97d0159f329
-    content: "Step 2: Write R script to generate reference values from test data"
-    status: pending
-  - id: dcf950d1-17be-42bf-b675-90db436036fc
-    content: "Step 3: Write Julia unit tests (test/test_[function_name].jl) - watch tests fail"
-    status: pending
-  - id: edc917a6-ea44-4967-96a8-0aa1c78639f1
-    content: "Step 4: Write R parallel tests (tests/testthat/test-[function_name].R) - watch tests fail"
-    status: pending
-  - id: 3a9adaa4-b0ca-4e6f-bb14-c6ad55fadb16
-    content: "Step 5: Implement first Julia version - make all tests pass"
-    status: pending
-  - id: 2c399ed3-72b8-495b-9913-6f738b200a63
-    content: "Step 6: Run benchmarks (R, Julia via R interface, Julia direct)"
-    status: pending
-  - id: d8856555-7964-473d-9e13-0b057e62c4dd
-    content: "Step 7: Refactor and optimize Julia function - ensure tests still pass"
-    status: pending
-  - id: 07fcea95-d414-4955-ae87-e24d6291ec57
-    content: "Step 8: Add documentation and examples"
-    status: pending
-  - id: ad7d1752-859e-493f-af1d-1d1cb9944900
-    content: "Step 1: Classify function as deterministic or probabilistic"
-    status: pending
-  - id: f1621e5e-cd2f-46d3-a743-71d4e8880ea2
-    content: "Step 2: Write R script to generate reference values from test data"
-    status: pending
-  - id: 0758cb35-6cb2-4960-8902-9a32b4543dd5
-    content: "Step 3: Write Julia unit tests (test/test_[function_name].jl) - watch tests fail"
-    status: pending
-  - id: c09f25e6-f29b-47eb-839b-fc40469bf83f
-    content: "Step 4: Write R parallel tests (tests/testthat/test-[function_name].R) - watch tests fail"
-    status: pending
-  - id: ed0fd476-0364-4a3a-8266-7fde5c51be3d
-    content: "Step 5: Implement first Julia version - make all tests pass"
-    status: pending
-  - id: d846e4ab-1c1a-41a8-ac30-8a5ca4f9f142
-    content: "Step 6: Run benchmarks (R, Julia via R interface, Julia direct)"
-    status: pending
-  - id: 9669d999-466a-4296-af95-5462687f233c
-    content: "Step 7: Refactor and optimize Julia function - ensure tests still pass"
-    status: pending
-  - id: 64b454ee-e55a-44f6-9b9b-d91a3ba78859
-    content: "Step 8: Add documentation and examples"
-    status: pending
-  - id: adf9141b-3fc0-416b-b3ce-ea66814ae93e
-    content: End-to-end validation of complete aldex() workflow
-    status: pending
-  - id: 27ce5e64-8870-4b46-99b7-a647035ec1e2
-    content: Set up ALDEx2GPU.jl package structure with extension system for GPU backends
-    status: pending
-  - id: 2f9be445-6c6c-41b0-a587-b02f5acee99d
-    content: Implement GPU kernels for CLR transformation and Dirichlet sampling using KernelAbstractions.jl
-    status: pending
-  - id: cd4abf93-df01-4fb0-8770-a4b924888017
-    content: Implement GPU-accelerated versions of core functions (aldex_clr, aldex_ttest, etc.)
-    status: pending
-  - id: 17c4e542-05f0-414d-a218-dbfccec9f908
-    content: Validate GPU implementations against CPU versions (which are validated against R)
-    status: pending
-  - id: cfaf1f7d-077b-400c-8b90-55f520da6a82
-    content: Testing and validation on multiple GPU backends
-    status: pending
-  - id: 0fdfca5a-ec04-46d3-bb42-0ab22a8386b4
-    content: Update R interface to support GPU backend selection
-    status: pending
-  - id: bf392d8d-26be-4827-8a93-95b9455a685a
-    content: Create comprehensive test suite with unit tests, integration tests, and performance benchmarks
-    status: pending
-  - id: 8c6bc3dd-ad60-44f8-8875-a6e8ab6dcf83
-    content: All functions validated using parallel testing framework (R vs. Julia)
-    status: pending
-  - id: 4b3ec18c-b42b-4477-8989-db9c1fe34b4e
-    content: End-to-end workflow validation with real datasets
-    status: pending
+todos: []
 ---
 
 # ALDEx2 Julia Translation Plan
@@ -257,6 +101,32 @@ Following Julia performance tips:
 - Use `@inbounds` and `@simd` where safe
 - Focus optimization efforts on functions identified as computationally expensive in Phase 0
 - Apply parallelization strategies identified in Phase 0 audit
+
+The table below includes explicit recommendations for translating R performance patterns to Julia:
+
+### Julia Performance Guidelines Based on R Audit Patterns
+
+| R Pattern Observed                                                                                    | Recommended Julia Approach                                                                                                                 |
+| ----------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| Avoiding method dispatch (e.g., `mean.default()`, `.Internal()` calls)                                | Rely on Julia’s **type-stable multiple dispatch**; remove any attempts to bypass dispatch.                                                 |
+| Vectorization to avoid loops (`rowSums()`, `apply()` replacements)                                    | Write **clear, type-stable loops**; vectorize only when using BLAS/matrix operations or for readability, **not performance**.              |
+| Rewriting base functions for speed (`quickdf()` replacing `as.data.frame()`)                          | Implement **specialized methods for specific types**, keeping base functions intact; rely on Julia compiler optimizations.                 |
+| Avoiding object growth in loops (`c()`, `rbind()`, `paste()`)                                         | Use **mutable arrays with `push!` or `append!`**, or **preallocate arrays** to avoid unnecessary allocations.                              |
+| Using C-backed or specialized helpers for performance (`rowSums()`, `vapply()`, `any(x==val)`)        | Use **loops or array operations in Julia**; helpers are only needed for clarity, not speed.                                                |
+| Avoiding coercions/type conversions (`apply()` on data frames)                                        | Ensure **type stability and explicit conversions**; coercion avoidance is mostly unnecessary in Julia.                                     |
+| Unsafe internal calls for micro-optimizations (`.Internal()` functions)                               | Rely on **compiler optimizations, preallocation, and type-stable code**; use unsafe operations only in exceptional, well-documented cases. |
+| Repeated method dispatch in tight numeric loops                                                       | Rely on **compiled multiple dispatch**; ensure functions are **type-stable** so dispatch is resolved at compile time.                      |
+| Vectorized subsetting/replacement to improve performance (`x[is.na(x)] <- 0`)                         | Use **loops or broadcasting (`.=`)** in Julia, which are efficient and clearer; vectorized assignment is unnecessary for speed.            |
+| Simplifying computations via specialized arguments (`read.csv(colClasses=...)`, `factor(levels=...)`) | Use **type-stable constructors or explicit parsing functions**; most operations are already fast when types are clear.                     |
+
+### Implementation Notes
+
+- All core functions will be written **type-stable from the start**, avoiding ad-hoc workarounds common in R.
+- Loops will **replace R-style vectorization** in hot paths unless BLAS or GPU-friendly operations are being leveraged.
+- Preallocation and in-place operations will be **prioritized for arrays and matrices**, especially in Monte Carlo sampling (`aldex_clr`) and per-feature statistical tests.
+- Multiple dispatch will be fully leveraged, replacing R’s `.default` and internal method bypasses.
+- Unsafe operations and internal calls will only be used if performance profiling shows significant gains **and safety can be guaranteed**.
+- All probabilistic functions will maintain reproducibility via **thread-safe RNGs**, avoiding R-style global RNG dependence.
 
 ## 2. ALDEx2GPU.jl - GPU Package
 
@@ -543,6 +413,7 @@ See `TDD_Implementation_Phases.md` for detailed test specifications and implemen
 **Objective:** Understand ALDEx2’s structure, dependencies, and functions.
 
 ### Tasks
+
 - Locate the ALDEx2 R package repository (CRAN/GitHub)
 - Map complete package structure:
   - `R/` – core R functions
@@ -557,7 +428,9 @@ See `TDD_Implementation_Phases.md` for detailed test specifications and implemen
   - Record package dependencies with exact versions
 
 ### Function Signature Documentation
+
 For each function:
+
 - **Inputs:**
   - Parameter names and types (`matrix`, `data.frame`, `numeric`, `character`, `logical`)
   - Required vs. optional parameters
@@ -580,6 +453,55 @@ For each function:
   - Example input/output with dimensions
   - Dependencies on other functions
 
+### R Code Optimization Analysis
+
+**Objective:** Identify sections of the ALDEx2 R package that are already optimized or use advanced techniques. This informs whether direct translation is sufficient or if Julia-specific refactoring is needed.
+
+## Optimization Patterns to Look For
+
+During the audit, flag code that shows signs of R-level optimization:
+
+| Pattern                                             | Description                                                                                                  | Audit Action                                                                                                      |
+| --------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------- |
+| **Vectorized operations**                           | Use of `rowSums()`, `colSums()`, `apply()`, `vapply()` or matrix operations to avoid explicit loops          | Note potential Julia translation: loops may be faster than R-style vectorization; mark for performance validation |
+| **Pre-allocation of vectors/matrices**              | Code that initializes vectors/matrices with fixed length before filling                                      | Flag as already optimized; Julia should also pre-allocate                                                         |
+| **Use of specialized helpers / internal functions** | Calls to `.Internal()` functions or other optimized base R functions                                         | Document exact purpose; consider whether Julia equivalent exists or if a new Julia implementation is required     |
+| **Avoidance of coercion**                           | Explicit type handling (`as.numeric()`, `as.matrix()`, `factor(levels=...)`) to prevent repeated conversions | Note for Julia translation: ensure type-stable constructors                                                       |
+| **C-backed or compiled helpers**                    | Use of functions like `rowSums()`, `any(x==val)` which are backed by optimized C code                        | Document these hotspots; Julia may achieve similar or better performance via type-stable loops or SIMD            |
+| **Efficient subsetting/replacement**                | Patterns like `x[is.na(x)] <- 0` implemented carefully to avoid unnecessary copies                           | Identify and note equivalent Julia broadcasting patterns                                                          |
+| **Loop optimization**                               | Explicit loops that avoid object growth (`for (i in 1:n)`) or use `*apply()` alternatives efficiently        | Check if type-stable Julia loops can replace or improve upon these                                                |
+| **Monte Carlo / random sampling optimizations**     | Use of vectorized Dirichlet or normal sampling (`rdirichlet()`, `rmvnorm()`)                                 | Document reproducibility, vectorization, and allocation patterns for translation to Julia/GPU                     |
+| **Memory-efficient data handling**                  | Use of `data.table`, `matrix`, or other memory-light structures instead of `data.frame` where possible       | Note for Julia: ensure efficient array representation and consider `DataFrame` only if necessary                  |
+
+## Audit Tasks
+
+For each function:
+
+1. Scan code for optimization patterns listed above.
+2. Document each pattern found:
+   - File and line numbers
+   - Purpose of optimization
+   - Whether it is essential for performance in Julia
+3. Classify sections as:
+   - **High priority for Julia optimization** – computationally expensive, not trivially translated
+   - **Direct translation likely sufficient** – already efficient in R, likely good performance in Julia loops
+   - **Candidate for GPU acceleration** – Monte Carlo sampling or feature-wise parallel computations
+4. Note potential pitfalls for Julia translation:
+   - R vectorization may translate into unnecessary allocations in Julia if not replaced with loops or views
+   - Internal `.Internal()` calls may require custom Julia implementation
+
+## Deliverables
+
+\*\*Add these `AUDIT/<function_name>/optimizations.md` in the following format:
+
+Example:
+
+| Function      | File & Line                 | R Optimization Pattern                       | Purpose                   | Translation Recommendation                  | Notes                          |
+| ------------- | --------------------------- | -------------------------------------------- | ------------------------- | ------------------------------------------- | ------------------------------ |
+| iqlr_features | R/feature_selection.R:12-35 | Pre-allocated matrices, efficient subsetting | Reduce memory allocations | Translate directly, maintain pre-allocation | Ensure type stability in Julia |
+
+- Include notes for Julia translation decisions, highlighting which R optimizations are already efficient and which require re-implementation or further optimization.
+
 ---
 
 ## 2. Test Coverage Analysis
@@ -587,6 +509,7 @@ For each function:
 **Objective:** Assess test completeness and identify gaps.
 
 ### Tasks
+
 - Run the test suite and measure coverage using `covr` or `testthat`
 - Document:
   - Coverage percentage per function
@@ -602,6 +525,7 @@ For each function:
 **Objective:** Identify deterministic vs. probabilistic functions and reproducibility requirements.
 
 ### Probabilistic Functions
+
 - Functions using random number generation:
   - `aldex_clr()` – Monte Carlo sampling
   - `rdirichlet()` – Random sampling
@@ -610,6 +534,7 @@ For each function:
   - Variability and reproducibility constraints
 
 ### Deterministic Functions
+
 - Functions producing fixed output for given input:
   - `aitchison_mean()` – mathematical operations
   - `iqlr_features()` – feature selection
@@ -623,22 +548,26 @@ For each function:
 **Objective:** Identify performance bottlenecks and create a reproducible benchmarking framework.
 
 ### Profiling Existing Code
+
 - Use `Rprof()` and `profvis` to locate slow code
 - Visualize execution time and memory usage
 - Highlight stochastic functions with variable runtimes
 
 ### Microbenchmarking
+
 - Use `microbenchmark` or `bench` packages
 - Test realistic input sizes (samples × features, metadata)
 - Collect median, mean, min/max, and interquartile runtime
 
 ### Performance Metrics
+
 - Execution time (seconds per function call)
 - Memory allocation (bytes)
 - Scalability with number of samples/features
 - Reproducibility for stochastic functions
 
 ### Best Practices (from Advanced R)
+
 - Optimize bottlenecks, not trivial code
 - Benchmark realistic input sizes
 - Compare alternative implementations
@@ -646,6 +575,7 @@ For each function:
 - Consider trade-offs: speed vs. readability/maintainability
 
 ### Documentation and Reporting
+
 - Record profiling and benchmarking results for each function
 - Highlight deterministic vs. stochastic functions
 - Provide optimization recommendations:
@@ -661,6 +591,7 @@ For each function:
 **Objective:** Organize audit information for each R function in a dedicated folder with reproducible profiling.
 
 ### Tasks
+
 - Create an `AUDIT/` folder in the project root
 - For each function in ALDEx2:
   - Create a subfolder: `AUDIT/<function_name>/`
@@ -670,7 +601,7 @@ For each function:
     - `benchmarks.md` – profiling and microbenchmark results
     - `notes.md` – observations, reproducibility, optimization suggestions
     - `profile.R` – **profiling and benchmarking code**, example template:
-
+    - `optimizations.md` - Notes on potential optimizations found in R source code
 
 **Week 2: Computational Analysis and Parallelization Opportunities**
 
@@ -686,18 +617,21 @@ For each function:
 2. **Parallelization and Distributed Computing Analysis**
 
    - **Monte Carlo Sampling Analysis:**
+
      - Analyze `aldex_clr()` Monte Carlo iterations
      - Determine if iterations are independent (embarrassingly parallel)
      - Measure overhead vs. computation ratio
      - Identify optimal chunk sizes for parallelization
 
    - **Feature-Level Parallelization:**
+
      - Identify functions that operate independently on features
      - Statistical tests (t-test, Wilcoxon) per feature
      - Effect size calculations per feature
      - Correlation analysis per feature pair
 
    - **Sample-Level Parallelization:**
+
      - Identify operations that can parallelize across samples
      - CLR transformations
      - Data preprocessing steps
@@ -769,6 +703,7 @@ For each function:
 **Tools and Methods:**
 
 - **R Package Analysis:**
+
   - `devtools::load_all()` - Load package for inspection
   - `ls("package:ALDEx2")` - List all exported functions
   - `getNamespaceExports("ALDEx2")` - Get all exports
@@ -780,6 +715,7 @@ For each function:
   - Manual inspection of `.Rd` files in `man/` directory for complete documentation
 
 - **Function Signature and Dimension Extraction:**
+
   - Create test scripts that call each function with known inputs
   - Use `str()` to inspect object structure and dimensions
   - Use `dim()`, `nrow()`, `ncol()`, `length()` to document dimensions
@@ -790,11 +726,13 @@ For each function:
   - Document dimension transformations by comparing input and output dimensions
 
 - **Test Coverage:**
+
   - `covr::package_coverage()` - Measure test coverage
   - `testthat::test_dir()` - Run test suite
   - Manual review of `tests/testthat/` directory
 
 - **Profiling:**
+
   - `profvis::profvis()` - Interactive profiling
   - `Rprof()` - Statistical profiling
   - `microbenchmark::microbenchmark()` - Function benchmarking
@@ -815,6 +753,137 @@ For each function:
 - [ ] Test specifications extracted from R package
 - [ ] Implementation priority matrix created
 - [ ] All deliverables documented and reviewed
+
+## Phase 0.5: DifferentialEquations.jl / GPU / R Interface Audit
+
+### 10.1 diffeqr: R ↔ Julia Interface
+
+**Objective:** Understand how `diffeqr` provides seamless R ↔ Julia interoperability for DifferentialEquations.jl and DiffEqGPU.jl.
+
+#### Tasks
+
+- Review `diffeqr` source code:
+
+  - How `JuliaCall` enables R ↔ Julia function calls
+  - Development-mode loading and hot-reloading patterns
+  - Type conversions:
+
+    - R `data.frame` → Julia `Array` or `DataFrame`
+    - R numeric vectors → `Array{Float64}`
+    - R lists → Julia tuples or NamedTuples
+
+- Examine utilities for side-by-side testing of R vs. Julia outputs
+- Identify support for deterministic vs. stochastic DEs
+- Document lessons for ALDEx2.jl:
+
+  - Development-mode loading & hot-reloading patterns
+  - Type-safe conversions and dimension checks
+  - Parallel testing framework for deterministic/stochastic functions
+  - Statistical validation approaches for Monte Carlo/stochastic workflows
+
+---
+
+### 10.2 DifferentialEquations.jl: Core Julia DEs
+
+**Objective:** Extract design and testing patterns for high-performance differential equation solvers in Julia.
+
+#### Tasks
+
+- Review solver API patterns, type stability, and composable integrators
+- Examine deterministic and stochastic DE workflows
+- Identify testing & benchmarking strategies:
+
+  - Deterministic solution validation
+  - Reproducibility checks for stochastic solvers
+  - Parameter sweeps / Monte Carlo simulations
+
+- Document lessons for ALDEx2.jl:
+
+  - Composable function & solver architecture
+  - Deterministic vs. stochastic workflow handling
+  - Efficient validation strategies
+
+---
+
+### 10.3 DiffEqGPU.jl / GPUArrays.jl: GPU Acceleration
+
+**Objective:** Identify patterns for writing portable, performant GPU kernels in Julia.
+
+#### Tasks
+
+- Review `DiffEqGPU.jl` and dependencies (`KernelAbstractions.jl`, `GPUArrays.jl`):
+
+  - Backend-agnostic support: CUDA, AMDGPU, Metal, oneAPI, OpenCL
+  - Portable kernel design patterns
+  - Pre-allocation of buffers and per-thread RNGs
+
+- Identify kernel-level best practices:
+
+  - Grid-stride loops for variable input sizes
+  - Input/output separation: write to pre-allocated buffers
+  - Use `@inbounds` and `@simd` for safe performance optimization
+  - Shared memory reductions, minimal atomics
+
+- Document lessons for ALDEx2GPU.jl:
+
+  - Portable kernels via `KernelAbstractions.jl`
+  - Fuse small kernels to reduce launch overhead
+  - Validation against CPU Julia implementation
+  - CPU fallback support
+
+---
+
+### 10.4 GPU Testing & Performance Validation
+
+**Objective:** Extract strategies for robust multi-backend GPU testing.
+
+#### Tasks
+
+- Examine test patterns:
+
+  - Start with single block / single thread for correctness
+  - Incrementally scale to full dataset and multi-threaded execution
+  - Compare GPU vs. CPU results
+  - Multi-backend GPU testing (CUDA, AMD, etc.)
+
+- Document recommended testing & benchmarking strategy:
+
+  - GPU kernel correctness validation
+  - Reproducible stochastic GPU computations
+  - Incremental scaling approach
+
+---
+
+### 10.5 AUDIT Folder Structure for Julia Package Analysis
+
+**Objective:** Organize audit artifacts by package and kernel.
+
+```graphql
+AUDIT_JULIA/
+├─ diffeqr/
+│  ├─ R_Interface.md          # JuliaCall integration, type conversions
+│  ├─ Testing.md              # R ↔ Julia testing, stochastic validation
+│  └─ Lessons_ALDEx2.md       # Actionable takeaways for ALDEx2.jl
+│
+├─ DifferentialEquations/
+│  ├─ Solver_Design.md        # Composable DE solvers, deterministic/stochastic patterns
+│  ├─ Testing.md              # Validation & reproducibility patterns
+│  └─ Lessons_ALDEx2.md       # Actionable takeaways for ALDEx2.jl
+│
+├─ DiffEqGPU/
+│  ├─ Kernel_Design.md        # Portable kernel patterns, buffer management
+│  ├─ Performance.md          # Benchmarking & multi-backend testing
+│  └─ Lessons_ALDEx2GPU.md    # Actionable takeaways for ALDEx2GPU.jl
+```
+
+#### Documentation Template per Package
+
+- **Objective / Focus Area**
+- **Implementation Patterns Observed**
+- **Testing & Validation Practices**
+- **Performance / Benchmarking Notes**
+- **Direct Lessons for ALDEx2.jl / ALDEx2GPU.jl**
+- **Open Questions / Gaps**
 
 ### Phase 1: R Interface for Parallel Testing (Weeks 3-4)
 
@@ -952,6 +1021,7 @@ For each function:
 ### Phase 4: GPU Package (Weeks 11-14)
 
 **Implementation Guidelines:** Follow all GPU implementation guidelines from Section 2.4 during kernel development. Key principles:
+
 - Start with small inputs and 1 block/1 thread for initial testing
 - Use Float32 for performance unless precision requires Float64
 - Guard memory access, then optimize with @inbounds after validation

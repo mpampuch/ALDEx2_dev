@@ -150,3 +150,5 @@ Based on the above categorization, the TDD workflow from the plan should adopt t
   - Generate and store reference values in Phase 0/Phase 1 scripts for reuse in Julia tests.
 
 This document completes Phase 0 · Week 1 · Section 3 (“Function Categorization”) by explicitly labeling all ALDEx2 core functions as **probabilistic** or **deterministic** and stating their reproducibility and testing requirements for the Julia translation.
+
+

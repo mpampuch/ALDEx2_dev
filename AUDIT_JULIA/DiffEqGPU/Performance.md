@@ -293,3 +293,5 @@ end
 
 5. **Precision Requirements**: What precision is required for ALDEx2 computations?
    - Solution: Test with Float32 first, use Float64 if precision issues arise
+
+

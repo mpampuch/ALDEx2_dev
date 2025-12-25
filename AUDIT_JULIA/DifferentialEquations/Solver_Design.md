@@ -373,3 +373,5 @@ du = similar(u)
 
 5. **Validation Strategy**: How to validate Monte Carlo results statistically?
    - Solution: Use KS test, correlation tests, ensemble statistics
+
+

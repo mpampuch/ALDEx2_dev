@@ -328,3 +328,5 @@ end
 
 5. **Backend Support**: Which backends are most important for ALDEx2 users?
    - Solution: Start with CUDA (most common), add others based on demand
+
+

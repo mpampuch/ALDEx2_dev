@@ -242,3 +242,5 @@ test_that('ODE system works',{
 6. **Statistical Validation**: How to validate probabilistic functions (Monte Carlo sampling)?
    - Solution: Use statistical tests (Kolmogorov-Smirnov, correlation) rather than exact matching
    - Set seeds independently in R and Julia for reproducibility (not for matching)
+
+

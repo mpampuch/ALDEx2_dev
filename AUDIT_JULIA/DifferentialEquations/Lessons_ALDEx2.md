@@ -329,3 +329,5 @@ end
 - [ ] Optimize with pre-allocation and views
 - [ ] Profile and fix type instabilities
 - [ ] Document validation strategies
+
+

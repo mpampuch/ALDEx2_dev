@@ -384,3 +384,5 @@ memory_used = mem_after - mem_before
 
 5. **Memory Limits**: How to test with limited GPU memory?
    - Solution: Test with various problem sizes, handle memory errors gracefully
+
+

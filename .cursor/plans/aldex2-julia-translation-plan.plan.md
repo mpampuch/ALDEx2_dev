@@ -18,7 +18,7 @@ The project will consist of three main packages:
 
 1. **ALDEx2.jl** - Core Julia package with CPU-optimized implementations
 2. **ALDEx2GPU.jl** - GPU-accelerated version using KernelAbstractions.jl
-3. **ALDEx2_jl_R** - R interface package using JuliaCall (similar to diffeqr)
+3. **ALDEx2_jl_R** - R interfacexr package using JuliaCall (similar to diffeqr)
 
 ## 1. ALDEx2.jl - Core Package
 
@@ -408,7 +408,7 @@ See `TDD_Implementation_Phases.md` for detailed test specifications and implemen
 
 # Week 1: ALDEx2 Package Structure and Test Coverage Analysis
 
-## 1. Package Discovery and Inventory
+## [x] 1. Package Discovery and Inventory
 
 **Objective:** Understand ALDEx2’s structure, dependencies, and functions.
 
@@ -453,7 +453,7 @@ For each function:
   - Example input/output with dimensions
   - Dependencies on other functions
 
-### R Code Optimization Analysis
+### [x] R Code Optimization Analysis
 
 **Objective:** Identify sections of the ALDEx2 R package that are already optimized or use advanced techniques. This informs whether direct translation is sufficient or if Julia-specific refactoring is needed.
 
@@ -504,7 +504,7 @@ Example:
 
 ---
 
-## 2. Test Coverage Analysis
+## [x] 2. Test Coverage Analysis
 
 **Objective:** Assess test completeness and identify gaps.
 
@@ -520,7 +520,7 @@ Example:
 
 ---
 
-## 3. Function Categorization
+## [x] 3. Function Categorization
 
 **Objective:** Identify deterministic vs. probabilistic functions and reproducibility requirements.
 
@@ -543,7 +543,7 @@ Example:
 
 ---
 
-## 4. Benchmarking Infrastructure Audit
+## [x] 4. Benchmarking Infrastructure Audit
 
 **Objective:** Identify performance bottlenecks and create a reproducible benchmarking framework.
 
@@ -586,7 +586,7 @@ Example:
 
 ---
 
-## 5. AUDIT Folder Structure for Function-Level Analysis
+## [x] 5. AUDIT Folder Structure for Function-Level Analysis
 
 **Objective:** Organize audit information for each R function in a dedicated folder with reproducible profiling.
 
@@ -745,16 +745,16 @@ Example:
 
 **Success Criteria for Phase 0:**
 
-- [ ] Complete function inventory with 100% coverage, including exact input/output specifications with data types and mathematical dimensions
-- [ ] Test coverage report showing coverage percentage per function
-- [ ] All functions categorized as probabilistic or deterministic
-- [ ] Performance profiles for all major functions
-- [ ] Parallelization strategy document with specific recommendations
-- [ ] Test specifications extracted from R package
-- [ ] Implementation priority matrix created
-- [ ] All deliverables documented and reviewed
+- [x] Complete function inventory with 100% coverage, including exact input/output specifications with data types and mathematical dimensions
+- [x] Test coverage report showing coverage percentage per function
+- [x] All functions categorized as probabilistic or deterministic
+- [x] Performance profiles for all major functions
+- [x] Parallelization strategy document with specific recommendations
+- [x] Test specifications extracted from R package
+- [x] Implementation priority matrix created
+- [x] All deliverables documented and reviewed
 
-## Phase 0.5: DifferentialEquations.jl / GPU / R Interface Audit
+## [x] Phase 0.5: DifferentialEquations.jl / GPU / R Interface Audit
 
 ### 10.1 diffeqr: R ↔ Julia Interface
 
@@ -884,6 +884,305 @@ AUDIT_JULIA/
 - **Performance / Benchmarking Notes**
 - **Direct Lessons for ALDEx2.jl / ALDEx2GPU.jl**
 - **Open Questions / Gaps**
+
+### Phase 0.9: Proper Julia Package setup
+
+#### Step-by-Step Guide: Proper Julia Package Setup (Based on Tim Holy's Advanced Scientific Computing Lectures)
+
+**Reference:** [Tim Holy's Advanced Scientific Computing Lectures](https://github.com/timholy/AdvancedScientificComputing/tree/main/lectures)
+
+##### 1. Package Structure and Directory Layout
+
+A proper Julia package follows a standard directory structure that enables:
+- Clear organization of code, tests, and documentation
+- Easy navigation for contributors
+- Integration with Julia's package manager
+- Automated testing and documentation generation
+
+**Standard Package Structure:**
+```
+PackageName.jl/
+├── Project.toml          # Package metadata, dependencies, version info
+├── Manifest.toml         # Exact dependency versions (git-ignored in packages)
+├── README.md             # Package overview, installation, quick start
+├── LICENSE               # Open source license (MIT recommended)
+├── .gitignore            # Git ignore patterns
+├── src/
+│   └── PackageName.jl    # Main module file (must match package name)
+├── test/
+│   └── runtests.jl       # Test suite entry point
+├── docs/
+│   ├── make.jl           # Documentation build script
+│   ├── Project.toml      # Documentation dependencies
+│   └── src/
+│       └── index.md      # Documentation homepage
+└── .github/
+    └── workflows/
+        └── CI.yml        # Continuous integration configuration
+```
+
+**Key Principles (from Tim Holy's lectures):**
+- **Modularity**: Split code into logical files within `src/` (e.g., `types.jl`, `clr.jl`, `statistical_tests.jl`)
+- **Testability**: Every function should have corresponding tests
+- **Documentation**: Inline docstrings + separate documentation site
+- **Reproducibility**: Pin dependency versions in `[compat]` section
+
+##### 2. Project.toml Configuration
+
+The `Project.toml` file is the heart of a Julia package. It defines:
+- Package identity (name, UUID, version)
+- Dependencies and their compatibility ranges
+- Development tools (test, dev dependencies)
+
+**Essential Sections:**
+
+```toml
+name = "PackageName"
+uuid = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"  # Generate with: using UUIDs; uuid4()
+authors = ["Your Name <email@example.com> and contributors"]
+version = "0.1.0"
+
+[deps]
+# Core runtime dependencies only
+Distributions = "31c24e10-a181-5473-b8eb-7969acd0382f"
+StatsBase = "2913bbd2-ae8a-5f71-8c99-4fb6c76f3a91"
+DataFrames = "a93c6f00-e57d-5684-b7b6-d8193f3e46c0"
+
+[compat]
+# Compatibility constraints - CRITICAL for reproducibility
+julia = "1.6"  # Minimum Julia version
+Distributions = "0.25"
+StatsBase = "0.34"
+DataFrames = "1.7"
+
+[extras]
+# Optional dependencies for testing, development, documentation
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+BenchmarkTools = "6e4b80f9-dd63-53aa-95a3-0cdb28fa8baf"
+Documenter = "e30172f5-a6a5-5a46-863b-614d45cd2de4"
+Revise = "295af30f-e4ad-537b-8983-00126c2a3abe"
+
+[targets]
+# Group extras into logical targets
+test = ["Test", "BenchmarkTools"]
+dev = ["Test", "BenchmarkTools", "Revise", "Documenter"]
+```
+
+**Best Practices:**
+- **UUID Generation**: Use `using UUIDs; uuid4()` in Julia REPL to generate unique UUIDs
+- **Version Compatibility**: Use `[compat]` to specify minimum versions, not exact versions (allows patch updates)
+- **Separate Concerns**: Keep runtime deps in `[deps]`, development tools in `[extras]`
+- **Target Organization**: Group extras into logical targets (test, dev, docs, etc.)
+
+##### 3. Module Organization
+
+The main module file (`src/PackageName.jl`) should:
+- Define the module
+- Include all source files in dependency order
+- Export public API functions and types
+- Keep the module file clean and organized
+
+**Module Structure Template:**
+
+```julia
+module PackageName
+
+# Standard library imports (no need to declare in Project.toml)
+using LinearAlgebra
+using Random
+using Statistics
+
+# External dependencies
+using Distributions
+using StatsBase
+using DataFrames
+
+# Include source files in dependency order
+# 1. Types and structures first
+include("types.jl")
+
+# 2. Utility functions
+include("utils.jl")
+
+# 3. Core algorithms
+include("distributions.jl")
+include("clr.jl")
+include("statistical_tests.jl")
+
+# 4. High-level API
+include("api.jl")
+
+# Public API exports
+export main_function, core_type, utility_function
+
+end # module
+```
+
+**Best Practices:**
+- **Dependency Order**: Include files in order of dependencies (types before functions that use them)
+- **Selective Exports**: Only export functions/types that are part of the public API
+- **Clear Organization**: Group related functionality into separate files
+- **Documentation**: Add docstrings to all exported functions
+
+##### 4. Testing Structure
+
+Following Tim Holy's emphasis on testability and reproducibility:
+
+**Test Organization:**
+```
+test/
+├── runtests.jl           # Main test file (includes all test files)
+├── test_types.jl          # Tests for type definitions
+├── test_core.jl           # Tests for core algorithms
+├── test_integration.jl    # End-to-end integration tests
+└── data/                  # Test datasets and reference values
+    ├── sample_data.jld2
+    └── reference_results.jld2
+```
+
+**Test File Template (`test/runtests.jl`):**
+
+```julia
+using PackageName
+using Test
+
+# Include all test files
+include("test_types.jl")
+include("test_core.jl")
+include("test_integration.jl")
+```
+
+**Test Best Practices:**
+- **Test-Driven Development**: Write tests before or alongside implementation
+- **Reference Values**: Store expected results from validated R implementation
+- **Reproducibility**: Use fixed random seeds for stochastic tests
+- **Coverage**: Aim for >90% code coverage
+- **Performance Tests**: Use BenchmarkTools.jl for regression testing
+
+##### 5. Documentation Setup
+
+**Documentation Structure:**
+```
+docs/
+├── make.jl                # Documentation build script
+├── Project.toml          # Documentation dependencies (Documenter.jl, etc.)
+└── src/
+    ├── index.md          # Homepage
+    ├── api.md            # API reference
+    └── examples.md       # Usage examples
+```
+
+**Documentation Build Script (`docs/make.jl`):**
+
+```julia
+using Documenter
+using PackageName
+
+makedocs(
+    sitename = "PackageName",
+    format = Documenter.HTML(),
+    pages = [
+        "Home" => "index.md",
+        "API Reference" => "api.md",
+        "Examples" => "examples.md",
+    ],
+)
+
+deploydocs(
+    repo = "github.com/username/PackageName.jl.git",
+    devbranch = "main",
+)
+```
+
+##### 6. Development Tools and Workflow
+
+**Essential Development Packages (from Tim Holy's lectures):**
+
+- **Revise.jl**: Automatic code reloading during development
+- **BenchmarkTools.jl**: Performance benchmarking and regression testing
+- **Cthulhu.jl**: Advanced debugging and type stability analysis
+- **Infiltrator.jl**: Interactive debugging with breakpoints
+- **JuliaInterpreter.jl**: Step-by-step debugging
+- **ProfileView.jl**: Visual performance profiling
+- **Coverage.jl**: Code coverage analysis
+
+**Development Workflow:**
+1. Activate package environment: `] activate .`
+2. Install dev dependencies: `] instantiate`
+3. Use Revise for live code reloading: `using Revise; using PackageName`
+4. Run tests: `] test PackageName`
+5. Check coverage: `using Coverage; Coverage.Codecov.submit()`
+
+##### 7. CI/CD Setup (GitHub Actions)
+
+**Basic CI Workflow (`.github/workflows/CI.yml`):**
+
+```yaml
+name: CI
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        julia-version: ['1.6', '1.7', '1.8', '1.9']
+    steps:
+      - uses: actions/checkout@v2
+      - uses: julia-actions/setup-julia@v1
+        with:
+          version: ${{ matrix.julia-version }}
+      - uses: julia-actions/cache@v1
+      - run: julia --project -e 'using Pkg; Pkg.instantiate()'
+      - run: julia --project -e 'using Pkg; Pkg.test()'
+      - uses: julia-actions/julia-coveralls@v1
+```
+
+##### 8. Package Quality Checklist
+
+Based on Tim Holy's criteria for recognizing great packages:
+
+- [ ] **Clear README**: Installation, quick start, basic usage
+- [ ] **Comprehensive Documentation**: Inline docstrings + documentation site
+- [ ] **Test Coverage**: >90% coverage with meaningful tests
+- [ ] **Version Compatibility**: Proper `[compat]` entries for all dependencies
+- [ ] **CI/CD Pipeline**: Automated testing on multiple Julia versions and OS
+- [ ] **Code Organization**: Modular structure with clear separation of concerns
+- [ ] **Performance**: Benchmarked and optimized critical paths
+- [ ] **License**: Clear open source license (MIT recommended)
+- [ ] **Contributing Guidelines**: Clear instructions for contributors
+- [ ] **Changelog**: Document all changes (CHANGELOG.md)
+
+##### 9. Application to ALDEx2.jl and ALDEx2GPU.jl
+
+**For ALDEx2.jl:**
+1. Verify package structure matches standard layout
+2. Ensure `Project.toml` has proper `[compat]` entries for all dependencies
+3. Organize `src/` files logically (types → utils → core algorithms → API)
+4. Set up comprehensive test suite with reference values from R
+5. Configure documentation with Documenter.jl
+6. Set up CI/CD with GitHub Actions
+7. Add development tools to `[extras]` and `[targets]`
+
+**For ALDEx2GPU.jl:**
+1. Follow same structure as ALDEx2.jl
+2. Add GPU dependencies as `[weakdeps]` with `[extensions]` (CUDA, AMDGPU, Metal, etc.)
+3. Use extension system for multi-backend GPU support (similar to DiffEqGPU.jl)
+4. Include ALDEx2.jl as a dependency
+5. Add GPU-specific tests and benchmarks
+6. Document GPU backend requirements and setup
+
+**Next Steps:**
+1. Audit current ALDEx2.jl package structure against this guide
+2. Update Project.toml with proper `[compat]` entries
+3. Reorganize source files if needed
+4. Set up ALDEx2GPU.jl package following the same structure
+5. Configure CI/CD for both packages
+6. Set up documentation for both packages
 
 ### Phase 1: R Interface for Parallel Testing (Weeks 3-4)
 

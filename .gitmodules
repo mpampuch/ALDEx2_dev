@@ -1,4 +1,14 @@
-[submodule "ALDEx2_jl"]
-	path = ALDEx2_jl
-	url = https://github.com/mpampuch/ALDEx2_jl.git
+[submodule "ALDEx2.jl"]
+	path = ALDEx2.jl/ALDEx2
+	url = https://github.com/mpampuch/ALDEx2.jl
+	branch = main
+
+[submodule "ALDEx2GPU.jl"]
+	path = ALDEx2GPU.jl/ALDEx2GPU
+	url = https://github.com/mpampuch/ALDEx2GPU.jl
+	branch = main
+
+[submodule "ALDEx2jlr"]
+	path = ALDEx2jlr
+	url = https://github.com/mpampuch/ALDEx2jlr
 	branch = main

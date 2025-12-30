@@ -1,9 +1,3 @@
----
-name: ""
-overview: ""
-todos: []
----
-
 # ALDEx2 Julia Translation Plan
 
 ## Overview
@@ -18,7 +12,7 @@ The project will consist of three main packages:
 
 1. **ALDEx2.jl** - Core Julia package with CPU-optimized implementations
 2. **ALDEx2GPU.jl** - GPU-accelerated version using KernelAbstractions.jl
-3. **ALDEx2_jl_R** - R interfacexr package using JuliaCall (similar to diffeqr)
+3. **ALDEx2jlr** - R interface package using JuliaCall (similar to diffeqr)
 
 ## 1. ALDEx2.jl - Core Package
 
@@ -258,14 +252,14 @@ OpenCLExt = ["OpenCL"]
 - **Keep Kernels Minimal:** Keep GPU code minimal—move setup, preprocessing, or complex logic to the host (CPU). Kernels should focus on the parallel computation itself.
 - **Host-Device Separation:** Clearly separate host code (setup, data preparation, result collection) from device code (kernels). This improves maintainability and performance.
 
-## 3. ALDEx2_jl_R - R Interface Package
+## 3. ALDEx2jlr - R Interface Package
 
 **Note:** This interface is implemented in Phase 1 (immediately after audit) to enable parallel testing during development.
 
 ### 3.1 Package Structure
 
 ```
-ALDEx2_jl_R/
+ALDEx2jlr/
 ├── DESCRIPTION
 ├── NAMESPACE
 ├── R/
@@ -1190,7 +1184,7 @@ Based on Tim Holy's criteria for recognizing great packages:
 
 **Week 3: R Interface Infrastructure**
 
-- Set up ALDEx2_jl_R package structure (enhance existing if present)
+- Set up ALDEx2jlr package structure (enhance existing if present)
 - Implement Julia setup function using JuliaCall (similar to `diffeqr` pattern)
   - Initialize Julia environment
   - Load ALDEx2.jl package (even if functions are incomplete)
@@ -1482,7 +1476,7 @@ Each function follows the 8-step TDD process:
 - `ext/CUDAExt.jl` - CUDA extension
 - `Project.toml` - Dependencies with extensions
 
-### ALDEx2_jl_R
+### ALDEx2jlr
 
 - `R/aldex2jl_setup.R` - Enhance existing with development mode support
 - `R/aldex2jl.R` - Main wrapper functions

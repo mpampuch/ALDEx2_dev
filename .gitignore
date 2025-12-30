@@ -1,3 +1,6 @@
+DIFFEQ/
+TEST_DATA/
+
 # OS files
 .DS_Store
 Thumbs.db

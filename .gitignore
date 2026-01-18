@@ -1,6 +1,12 @@
 DIFFEQ/
 TEST_DATA/
 
+
+benchmarks_files 
+**/.*old_benchmarks/
+benchmarks.rmarkdown
+benchmarks_results.rds
+
 # OS files
 .DS_Store
 Thumbs.db

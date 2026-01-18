@@ -1,0 +1,401 @@
+---
+title: "ALDEx2 CLR Benchmark"
+author: "Benchmark Analysis"
+date: "`r Sys.time()`"
+format:
+  html:
+    toc: true
+    code-fold: false
+    code-tools: true
+execute:
+  echo: true
+  warning: false
+  message: false
+---
+
+
+```{r}
+#| label: setup-R
+#| include: false
+#| echo: false
+#| output: false
+
+library(ALDEx2)
+library(microbenchmark)
+library(ggplot2)
+library(grid)
+library(bench)
+library(ggbeeswarm)
+library(testthat)
+```
+
+```{julia}
+#| label: setup-Julia
+#| include: false
+#| echo: false
+#| output: false
+
+import Pkg
+
+try
+    using Plots
+catch
+    Pkg.add("Plots")
+    using Plots
+end
+
+try
+    using StatsPlots
+catch
+    Pkg.add("StatsPlots")
+    using StatsPlots
+end
+
+try
+    using BenchmarkTools
+catch
+    Pkg.add("BenchmarkTools")
+    using BenchmarkTools
+end
+```
+
+
+```{r}
+#| label: load-data
+#| echo: false
+#| output: false
+
+selex <- read.csv(
+  "/Users/markpampuch/Dropbox/KAUST/PhD/ALDEx2_jl/ALDEx2_dev/TEST_DATA/selex_subset_1201-1600.csv",
+  row.names = 1
+)
+
+conds <- c(rep("NS", 7), rep("S", 7))
+```
+
+
+```{r}
+#| label: benchmark-R-native
+#| cache: false
+#| echo: false
+#| output: false
+
+set.seed(1)
+
+bm_r <- mark(
+  clr1 = aldex.clr(selex, conds, mc.samples = 128),
+  iterations = 100
+)
+
+bm_r_ms <- as.numeric(bm_r$time[[1]])
+```
+
+
+```{r}
+#| label: benchmark-Julia-to-R-interface
+#| cache: false
+#| echo: false
+#| output: false
+
+set.seed(1)
+
+bm_julia_to_r <- mark(
+  clr1 = aldex.clr(selex, conds, mc.samples = 128),
+  iterations = 100
+)
+
+bm_julia_to_r_ms <- as.numeric(bm_julia_to_r$time[[1]])
+```
+
+
+```{julia}
+#| label: benchmark-Julia
+#| cache: false
+#| echo: false
+#| output: false
+
+# Generate a random vector of size 1000
+x = randn(1000)
+
+# Define a mock function to do a basic operation (e.g., z-score normalization)
+function mock_clr(x)
+    μ = mean(x)
+    σ = std(x)
+    return (x .- μ) ./ σ
+end
+
+# Run a benchmark of the mock function
+bm_julia = @benchmark mock_clr($x)
+
+println(bm_julia)
+display(median(bm_julia))
+
+```
+
+```{r}
+#| label: plot-R-native
+#| echo: false
+#| output: false
+
+# Move the ggplot2-based R and interface (bm_r_ms, bm_julia_to_r_ms) plotting code up here,
+# but just *create* and assign the ggplot/gridExtra objects, don't display yet.
+
+# Native ALDEx2 CLR, R version plots:
+hist_plot <- ggplot(data.frame(x = bm_r_ms), aes(x = x)) +
+  geom_histogram(bins = 100, fill = "steelblue", color = "black") +
+  theme_minimal() +
+  ggtitle("Native R ALDEx2 CLR Benchmark: Histogram")
+
+# violin_plot_r_native <- autoplot(bm_r) + ggtitle("Violin Plot of Native ALDEx2 CLR, R version")
+
+# Create a data frame from the numeric vector
+df_plot_r_native <- data.frame(
+  time_ms = bm_r_ms,
+  expression = "bm_r"  # name of your benchmark
+)
+
+# Violin plot
+# # violin_plot_r_native <- autoplot(bm_r) + ggtitle("Violin Plot of Native ALDEx2 CLR, R version")
+
+violin_plot_r_native <- ggplot(df_plot_r_native, aes(x = expression, y = time_ms)) +
+  geom_violin(fill = "skyblue", alpha = 0.5, color = "black") +
+  geom_boxplot(width = 0.1, outlier.shape = NA) +          
+  stat_summary(fun = median, geom = "point", color = "red", size = 2) +
+  labs(
+    title = "Violin Plot of Native R ALDEx2 CLR Benchmark",
+    x = "Expression",
+    y = "Execution Time (ms)" #, log10-scaled"
+  ) +
+  # scale_y_log10() +   # <-- log-scale the y-axis
+  theme_minimal(base_size = 14)
+
+r_native_grid <- gridExtra::arrangeGrob(
+  violin_plot_r_native,
+  hist_plot,
+  ncol = 2
+)
+```
+
+```{r}
+#| label: plot-Julia-to-R-interface
+#| echo: false
+#| output: false
+
+# Julia-to-R interface version plots:
+hist_plot_julia_to_r <- ggplot(data.frame(x = bm_julia_to_r_ms), aes(x = x)) +
+  geom_histogram(bins = 100, fill = "steelblue", color = "black") +
+  theme_minimal() +
+  ggtitle("ALDEx2 CLR, Julia to R interface version: Histogram")
+
+# violin_plot_julia_to_r <- autoplot(bm_julia_to_r) + ggtitle("Violin Plot of ALDEx2 CLR, Julia to R interface version")
+
+# Create a data frame from the numeric vector
+df_plot_julia_to_r <- data.frame(
+  time_ms = bm_julia_to_r_ms,
+  expression = "bm_julia_to_r"  # name of your benchmark
+)
+
+
+violin_plot_julia_to_r <- ggplot(df_plot_julia_to_r, aes(x = expression, y = time_ms)) +
+  geom_violin(fill = "skyblue", alpha = 0.5, color = "black") +
+  geom_boxplot(width = 0.1, outlier.shape = NA) +          
+  stat_summary(fun = median, geom = "point", color = "red", size = 2) +
+  labs(
+    title = "Violin Plot of ALDEx2 CLR, Julia to R interface version",
+    x = "Expression",
+    y = "Execution Time (ms)" #, log10-scaled"
+  ) +
+  # scale_y_log10() +   # <-- log-scale the y-axis
+  theme_minimal(base_size = 14)
+
+julia_to_r_grid <- gridExtra::arrangeGrob(
+  violin_plot_julia_to_r,
+  hist_plot_julia_to_r,
+  ncol = 2
+)
+
+```
+
+```{julia}
+#| label: plot-julia
+#| echo: false
+#| output: false
+
+# Extract timing data from benchmark
+times_ns = bm_julia.times
+times_ms = times_ns ./ 1_000_000  # Convert nanoseconds to milliseconds
+
+
+
+# Create a violin plot of execution times using StatsPlots
+# Create a horizontal violin plot
+# The original `violin` call didn't plot because for 1D data you need a group.
+# A working simple violin plot using StatsPlots:
+
+# Violin plot
+p_violin = violin(
+    ["Julia Execution Time"],
+    [times_ms],
+    perm = false,            # still works
+    xlabel = "",
+    ylabel = "Time (ms)", #, log10-scaled",
+    title = "ALDEx2 CLR, Julia Benchmark: Violin Plot",
+    legend = false,
+    # scale_y_log10 = false,
+    color = :steelblue,
+    linecolor = :black,
+)
+
+# Histogram
+p_hist = histogram(
+    times_ms,
+    bins = 30,
+    xlabel = "Time (milliseconds)",
+    ylabel = "Frequency",
+    title = "ALDEx2 CLR, Julia Benchmark: Histogram",
+    color = :orange,
+    linecolor = :black,
+    alpha = 0.7
+)
+```
+
+### All benchmark summaries
+
+#### Native ALDEx2 CLR, R version summary
+```{r}
+#| label: summary-R-native
+#| echo: false
+
+summary(bm_r)
+```
+
+#### ALDEx2 CLR, Julia version summary
+```{julia}
+#| label: summary-Julia
+#| echo: false
+
+bm_julia
+```
+
+#### ALDEx2 CLR, Julia to R interface version summary
+```{r}
+#| label: summary-Julia-to-R
+#| echo: false
+
+summary(bm_julia_to_r)
+```
+
+### Native ALDEx2 CLR, R version benchmarks
+```{r}
+#| label: display-plots-R-native
+
+grid::grid.draw(r_native_grid)
+```
+
+### ALDEx2 CLR, Julia to R interface version benchmarks
+```{r}
+#| label: display-plots-Julia-to-R-interface
+
+grid::grid.draw(julia_to_r_grid)
+```
+
+### ALDEx2 CLR, Julia version benchmarks
+```{julia}
+#| label: display-plots-Julia
+plot(p_violin, p_hist, layout = (1, 2))
+```
+
+### Test Custom Package Loading Into Benchmark Suite
+```{r}
+#| label: test-ALDEx2jlr
+#| echo: true
+
+# Load devtools if not already loaded
+if (!require(devtools, quietly = TRUE)) {
+  install.packages("devtools")
+  library(devtools)
+}
+
+# Load ALDEx2jlr package from local development directory
+# Using absolute path for reliability
+aldex2jlr_path <- "/Users/markpampuch/Dropbox/KAUST/PhD/ALDEx2_jl/ALDEx2_dev/ALDEx2jlr"
+devtools::load_all(aldex2jlr_path)
+
+# Setup ALDEx2.jl (this initializes Julia and loads the package)
+aldex2jl <- aldex2jl_setup(pkg_check = TRUE)
+
+# Call hello_world function
+result <- aldex2jl$hello_world()
+print(result)
+
+# Call hello_world! function (note: ! is converted to _bang in R)
+result_bang <- aldex2jl$hello_world_bang()
+print(result_bang)
+```
+
+
+```{julia}
+#| label: test-ALDEx2.jl
+#| echo: true
+
+# Load the development package
+import Pkg
+
+# Use absolute path to the package directory (contains Project.toml)
+package_path = "/Users/markpampuch/Dropbox/KAUST/PhD/ALDEx2_jl/ALDEx2_dev/ALDEx2.jl/ALDEx2";
+
+# Add the package in development mode
+Pkg.develop(path = package_path)
+
+# Import the package
+using ALDEx2
+
+# Call the hello_world function
+hello_world()
+```
+
+### Check Source Codes
+```{julia}
+#| label: test-ALDEx2.jl-source-code
+#| echo: true
+
+# Read and display the source code of ALDEx2.jl
+source_file = "/Users/markpampuch/Dropbox/KAUST/PhD/ALDEx2_jl/ALDEx2_dev/ALDEx2.jl/ALDEx2/src/ALDEx2.jl";
+println("Source code of ALDEx2.jl:");
+println("=" ^ 60);
+read(source_file, String) |> print
+```
+
+```{r}
+#| label: test-ALDEx2.jl-source-code-R
+#| echo: true
+
+# Read and display the source code of ALDEx2.jl
+print(aldex2jl$hello_world)
+print(aldex2jl$hello_world_bang)
+```
+
+### Run Unit Tests
+```{r}
+#| label: run-unit-tests-Julia-to-R-interface
+#| echo: true
+
+mywd <- getwd()
+
+# Run unit tests of ALDEx2.jl
+setwd("/Users/markpampuch/Dropbox/KAUST/PhD/ALDEx2_jl/ALDEx2_dev/ALDEx2jlr")
+devtools::test()
+setwd(mywd)
+
+```
+
+### Output the git branch and commit hash
+```{r}
+#| label: git-branch-and-commit-hash
+#| echo: true
+
+git_branch <- system("git branch --show-current", intern = TRUE)
+git_commit <- system("git rev-parse HEAD", intern = TRUE)
+print(git_branch)
+print(git_commit)
+```
